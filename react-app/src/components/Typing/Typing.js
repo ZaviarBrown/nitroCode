@@ -13,11 +13,18 @@ const Typing = () => {
       let val = document.getElementById(i);
       if (input[i] === prompt[i]) {
         val.className = "correct";
-        console.log(val);
+        console.log(input);
       }
       if (input[i] !== prompt[i]) {
         val.className = "incorrect";
-        console.log(val);
+        console.log(input);
+      }
+    }
+    for (let i = 0; i < prompt.length; i++) {
+      let val = document.getElementById(i);
+      if (i > input.length - 1) {
+        val.className = "empty";
+        console.log("hi");
       }
     }
   }, [input]);
