@@ -9,6 +9,7 @@ import UsersList from "./components/Users/UsersList";
 import User from "./components/Users/User";
 import { authenticate } from "./store/session";
 import Typing from "./components/Typing/Typing";
+import Example from "./components/Example/Example";
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
@@ -47,7 +48,7 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
           <h1>My Home Page</h1>
-          <Typing />
+          <Example />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

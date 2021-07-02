@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Typing.css";
-import { getAllCode } from "../../store/code";
+import { getOneCode } from "../../store/code";
 
 const Typing = () => {
   const dispatch = useDispatch();
   const [input, setInput] = useState([]);
-  const prompts = useSelector((state) => state.code);
-  console.log(prompts);
-  let prompt = prompts["2"]?.split("");
-
-  // let prompt =
-  // "const aFunc = (aParam, aVar) => { for (let i = 0; i < aParam.length; i++) { aVar += aParam[i] } return aVar; }";
-  // prompt = prompt.split("");
-
+  // let prompt = useSelector((state) => state.code);
+  let prompt =
+    "const aFunc = (aParam, aVar) => { for (let i = 0; i < aParam.length; i++) { aVar += aParam[i] } return aVar; }";
+  prompt = prompt.split("");
   const spellCheck = () => {
     for (let i = 0; i < input.length; i++) {
       let val = document.getElementById(i);
@@ -30,18 +26,14 @@ const Typing = () => {
         val.className = "empty";
       }
     }
+    console.log(input);
   };
 
   useEffect(() => {
-    dispatch(getAllCode());
-		
-  }, []);
-
-  useEffect(() => {
-    if (prompt !== undefined)
-      if (input.length <= prompt.length) {
-        spellCheck();
-      }
+    // dispatch(getOneCode(1)).then(() => console.log(prompt));
+    if (input.length <= prompt.length) {
+      spellCheck();
+    }
   }, [input]);
 
   return (
