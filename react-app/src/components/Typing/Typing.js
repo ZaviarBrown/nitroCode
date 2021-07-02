@@ -8,7 +8,8 @@ const Typing = () => {
   const [input, setInput] = useState([]);
   const prompts = useSelector((state) => state.code);
   console.log(prompts);
-  let prompt = prompts["2"]?.split("");
+  const num = Math.floor(Math.random() * 2) + 1;
+  let prompt = prompts[`${num}`]?.split("");
 
   // let prompt =
   // "const aFunc = (aParam, aVar) => { for (let i = 0; i < aParam.length; i++) { aVar += aParam[i] } return aVar; }";
@@ -34,7 +35,6 @@ const Typing = () => {
 
   useEffect(() => {
     dispatch(getAllCode());
-		
   }, []);
 
   useEffect(() => {
