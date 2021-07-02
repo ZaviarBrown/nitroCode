@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./Typing.css";
+import { getOneCode } from "../../store/race";
 
 const Typing = () => {
+  const dispatch = useDispatch();
   const [input, setInput] = useState([]);
+  // let prompt = useSelector((state) => state.code);
   let prompt =
     "const aFunc = (aParam, aVar) => { for (let i = 0; i < aParam.length; i++) { aVar += aParam[i] } return aVar; }";
   prompt = prompt.split("");
-
   const spellCheck = () => {
     for (let i = 0; i < input.length; i++) {
       let val = document.getElementById(i);
@@ -27,6 +30,7 @@ const Typing = () => {
   };
 
   useEffect(() => {
+    // dispatch(getOneCode(1)).then(() => console.log(prompt));
     if (input.length <= prompt.length) {
       spellCheck();
     }
@@ -35,7 +39,7 @@ const Typing = () => {
   return (
     <div>
       <div id="prompt">
-        {prompt.map((char, i) => {
+        {prompt?.map((char, i) => {
           return (
             <span id={i} className="empty" key={i}>
               {char}

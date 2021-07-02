@@ -13,9 +13,6 @@ class Race(db.Model):
     cpm = db.Column(db.Integer, nullable=False)
     time = db.Column(db.Integer, nullable=False)
 
-    user = db.relationship("User", back_populates="races")
-    codeblock = db.relationship("Codeblock", back_populates="races")
-
     def to_dict(self):
         return {
             "id": self.id,

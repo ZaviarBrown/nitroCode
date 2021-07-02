@@ -7,11 +7,9 @@ class Stat(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     userId = db.Column(db.Integer, db.ForeignKey(
         "users.id"), nullable=False, unique=True)
-    races = db.Column(db.Interger)
+    races = db.Column(db.Integer)
     wins = db.Column(db.Integer)
     highestCpm = db.Column(db.Integer)
-
-    user = db.relationship("User", back_populates="stats")
 
     def to_dict(self):
         return {

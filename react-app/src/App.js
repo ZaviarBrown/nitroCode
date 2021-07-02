@@ -36,6 +36,9 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
+        <ProtectedRoute path="/race" exact={true}>
+          <Typing />
+        </ProtectedRoute>
         <ProtectedRoute path="/users" exact={true}>
           <UsersList />
         </ProtectedRoute>
