@@ -4,7 +4,7 @@ from app.models import Codeblock
 code_routes = Blueprint("code", __name__)
 
 
-@code_routes.route('/')
-def code():
-    codeblocks = Codeblock.query.all()
-    return {"codeblocks": [code.to_dict() for code in codeblocks]}
+@code_routes.route('/<int:id>')
+def code(id):
+    code = Codeblock.query.get(id)
+    return code.to_dict()

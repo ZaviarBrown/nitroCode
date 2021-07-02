@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Typing.css";
-import { getAllCode } from "../../store/code";
+import { getOneCode } from "../../store/code";
 
 const Typing = () => {
   const dispatch = useDispatch();
   const [input, setInput] = useState([]);
-  const prompts = useSelector((state) => state.code);
-  console.log(prompts);
-  const num = Math.floor(Math.random() * 2) + 1;
-  let prompt = prompts[`${num}`]?.split("");
+  const details = useSelector((state) => state.code);
+  const prompt = details.lines?.split("");
 
   // let prompt =
   // "const aFunc = (aParam, aVar) => { for (let i = 0; i < aParam.length; i++) { aVar += aParam[i] } return aVar; }";
@@ -34,7 +32,8 @@ const Typing = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllCode());
+    const num = Math.floor(Math.random() * 2) + 1;
+    dispatch(getOneCode(num));
   }, []);
 
   useEffect(() => {

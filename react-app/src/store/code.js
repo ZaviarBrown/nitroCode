@@ -5,8 +5,8 @@ const getCode = (payload) => ({
   payload,
 });
 
-export const getAllCode = () => async (dispatch) => {
-  const res = await fetch(`/api/code/`);
+export const getOneCode = (id) => async (dispatch) => {
+  const res = await fetch(`/api/code/${id}`);
   const code = await res.json();
   console.log(code);
   dispatch(getCode(code));
@@ -18,9 +18,9 @@ export default function code(state = initialState, action) {
   switch (action.type) {
     case GET_CODE: {
       let newState = { ...state };
-      action.payload.codeblocks.forEach((codeblock) => {
-        newState[codeblock.id] = codeblock.lines;
-      });
+      for (let x in action.payload) {
+        newState[x] = action.payload[x];
+      }
       return newState;
     }
     default:

@@ -10,8 +10,8 @@ def seed_codeblocks():
 
     js2 = Codeblock(
         language="JavaScript",
-        lines='''const getItem = (value) => ({ type: GET_ITEM, payload: value, }); ''',
-        charCount=110)
+        lines='''const getItem = (value) => ({ type: GET_ITEM, payload: value, });''',
+        charCount=65)
 
     db.session.add(js1)
     db.session.add(js2)
