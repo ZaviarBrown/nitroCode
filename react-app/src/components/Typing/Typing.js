@@ -2,16 +2,27 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Typing.css";
 import { getOneCode } from "../../store/code";
+import Timer from "../Timer/Timer";
 
 const Typing = () => {
   const dispatch = useDispatch();
   const [input, setInput] = useState([]);
+  const [start, setStart] = useState(false);
+  const [time, setTime] = useState(0);
+  const [timing, setTiming] = useState();
   const details = useSelector((state) => state.code);
   const prompt = details.lines?.split("");
 
   // let prompt =
   // "const aFunc = (aParam, aVar) => { for (let i = 0; i < aParam.length; i++) { aVar += aParam[i] } return aVar; }";
   // prompt = prompt.split("");
+
+  const timer = () => {
+    let startTime = Date.now();
+    setInterval(() => {
+      setTime(Math.floor((Date.now() - startTime) / 1000));
+    }, 1000);
+  };
 
   const spellCheck = () => {
     for (let i = 0; i < input.length; i++) {
@@ -37,14 +48,34 @@ const Typing = () => {
   }, []);
 
   useEffect(() => {
-    if (prompt !== undefined)
+    if (prompt !== undefined) {
+      if (input.length === 0) {
+        setStart(false);
+      }
+      if (input.length > 0) {
+        setStart(true);
+      }
       if (input.length <= prompt.length) {
         spellCheck();
       }
+    }
   }, [input]);
+
+  useEffect(() => {
+    if (start === true) {
+      setTiming(timer());
+    }
+    if (start === false) {
+      clearInterval(timing);
+      setTime(0);
+    }
+  }, [start]);
 
   return (
     <div>
+      <div>
+        <Timer time={time} />
+      </div>
       <div id="prompt">
         {prompt?.map((char, i) => {
           return (
