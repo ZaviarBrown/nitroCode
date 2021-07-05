@@ -9,7 +9,7 @@ import UsersList from "./components/Users/UsersList";
 import User from "./components/Users/User";
 import { authenticate } from "./store/session";
 import Typing from "./components/Typing/Typing";
-import Example from "./components/Example/Example";
+import Splash from "./components/Splash/Splash";
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
@@ -29,8 +29,10 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
       <Switch>
+        <Route path="/" exact={true}>
+          <Splash />
+        </Route>
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
@@ -38,17 +40,16 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path="/race" exact={true}>
+          <NavBar />
           <Typing />
         </ProtectedRoute>
         <ProtectedRoute path="/users" exact={true}>
+          <NavBar />
           <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true}>
+          <NavBar />
           <User />
-        </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true}>
-          <h1>My Home Page</h1>
-          <Example />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

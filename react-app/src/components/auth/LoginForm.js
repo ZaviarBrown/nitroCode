@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
+import styles from "./LoginForm.module.css";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.session.user)
+  const user = useSelector((state) => state.session.user);
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,8 +28,14 @@ const LoginForm = () => {
   };
 
   if (user) {
-    return <Redirect to="/" />;
+    return <Redirect to="/race" />;
   }
+
+  const demoLogin = () => {
+    setEmail("demo@aa.io");
+    setPassword("password");
+    login(email, password);
+  };
 
   return (
     <form onSubmit={onLogin}>
@@ -56,7 +63,10 @@ const LoginForm = () => {
           value={password}
           onChange={updatePassword}
         />
-        <button type="submit">Login</button>
+        <div className={styles.buttons}>
+          <button type="submit">Login</button>
+          <button onClick={demoLogin}>Demo</button>
+        </div>
       </div>
     </form>
   );

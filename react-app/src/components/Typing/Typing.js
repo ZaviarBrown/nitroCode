@@ -84,11 +84,14 @@ const Typing = () => {
             </span>
           );
         })}
+        <div className="textDiv">
+          <textarea
+            className="text"
+            autoFocus
+            onChange={(e) => setInput(e.target.value.split(""))}
+          ></textarea>
+        </div>
       </div>
-      <textarea
-        autoFocus
-        onChange={(e) => setInput(e.target.value.split(""))}
-      ></textarea>
     </div>
   );
 };

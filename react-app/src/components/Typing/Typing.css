@@ -7,5 +7,10 @@
 }
 
 .empty {
-  color: black;
+  color: white;
+}
+
+.text {
+  background-color: black;
+  width: 100%;
 }
