@@ -8,7 +8,8 @@ const Splash = () => {
     <div className={styles.main}>
       <div className={styles.header}>
         <h1 className={styles.green}>Nitro</h1>
-        <h1 className={styles.red}>Code_</h1>
+        <h1 className={styles.red}>Code</h1>
+        <h1 className={styles.under}>_</h1>
       </div>
       <div className={styles.buttonContainer}>
         <div className={styles.button}>

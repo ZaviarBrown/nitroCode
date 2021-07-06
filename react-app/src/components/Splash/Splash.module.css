@@ -8,15 +8,32 @@
 }
 
 .green {
-  font-style: italic;
   font-size: 100px;
+  font-style: italic;
   color: red;
 }
 
 .red {
-  font-style: italic;
   font-size: 100px;
+  font-style: italic;
   color: white;
+}
+
+.under {
+  font-size: 100px;
+  animation: blink 1s step-start 0s infinite;
+  -webkit-animation: blink 1s step-start 0s infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes blink {
+  50% {
+    opacity: 0;
+  }
 }
 
 .button {

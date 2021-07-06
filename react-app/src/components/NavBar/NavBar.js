@@ -49,7 +49,15 @@ const NavBar = () => {
           Nitro
         </NavLink>
         <NavLink to="/" exact={true} activeClassName="active">
-          Code_
+          Code
+        </NavLink>
+        <NavLink
+          className={styles.under}
+          to="/"
+          exact={true}
+          activeClassName="active"
+        >
+          __
         </NavLink>
       </div>
       <div className={styles.navLinks}>{setLinks}</div>
