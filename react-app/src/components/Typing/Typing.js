@@ -18,10 +18,15 @@ const Typing = () => {
   const prompt = details.lines?.split("");
 
   const timer = () => {
-    let startTime = Date.now();
-    setInterval(() => {
-      setTime(Math.floor((Date.now() - startTime) / 1000));
-    }, 1000);
+    return setTime((time) => time + 1);
+  };
+
+  const startTimer = () => {
+    setTiming(setInterval(timer, 1000));
+  };
+
+  const stopTimer = () => {
+    clearInterval(timing);
   };
 
   const spellCheck = () => {
@@ -69,11 +74,11 @@ const Typing = () => {
 
   useEffect(() => {
     if (start) {
-      setTiming(timer());
+      startTimer();
     }
-    if (start === false) {
-      clearInterval(timing);
+    if (!start) {
       setTime(0);
+      stopTimer();
     }
   }, [start]);
 

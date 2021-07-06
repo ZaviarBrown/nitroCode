@@ -40,7 +40,7 @@ export default function stat(state = initialState, action) {
     }
     case UPDATE_STAT: {
       let newState = { ...state };
-      return newState; 
+      return newState;
     }
     default:
       return state;
