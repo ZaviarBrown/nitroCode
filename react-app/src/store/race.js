@@ -27,7 +27,6 @@ export default function race(state = initialState, action) {
   switch (action.type) {
     case NEW_RACE: {
       const newState = { ...state };
-      newState[action.payload.id] = action.payload;
       return newState;
     }
     default:

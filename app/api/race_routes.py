@@ -9,7 +9,6 @@ race_routes = Blueprint("race", __name__)
 @race_routes.route('/', methods=["POST"])
 @login_required
 def new_race():
-    print("hello")
     raceData = request.json
     newRace = Race(
         userId=current_user.id,

@@ -8,7 +8,6 @@ const getCode = (payload) => ({
 export const getOneCode = (id) => async (dispatch) => {
   const res = await fetch(`/api/code/${id}`);
   const code = await res.json();
-  console.log(code);
   dispatch(getCode(code));
 };
 

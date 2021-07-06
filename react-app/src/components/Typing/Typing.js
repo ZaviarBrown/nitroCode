@@ -5,6 +5,7 @@ import { getOneCode } from "../../store/code";
 import Timer from "../Timer/Timer";
 import { createNewRace } from "../../store/race";
 import { Redirect } from "react-router-dom";
+import { updateOneStat } from "../../store/stat";
 
 const Typing = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ const Typing = () => {
   const [start, setStart] = useState(false);
   const [time, setTime] = useState(0);
   const [timing, setTiming] = useState();
+  const user = useSelector((state) => state.session.user);
   const details = useSelector((state) => state.code);
   const prompt = details.lines?.split("");
 
@@ -43,7 +45,6 @@ const Typing = () => {
   useEffect(() => {
     const num = Math.floor(Math.random() * 2) + 1;
     dispatch(getOneCode(num));
-		
   }, []);
 
   useEffect(() => {
@@ -62,7 +63,7 @@ const Typing = () => {
       let codeblockId = details.id;
       let cpm = (details.charCount / time) * 60;
       dispatch(createNewRace(codeblockId, 0, cpm, time));
-      return <Redirect to="/" />;
+      dispatch(updateOneStat(cpm));
     }
   }, [input]);
 

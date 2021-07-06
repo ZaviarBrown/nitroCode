@@ -1,0 +1,18 @@
+.logo {
+  font-style: italic;
+}
+
+.red {
+  color: red;
+}
+
+.navLinks {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

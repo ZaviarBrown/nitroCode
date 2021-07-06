@@ -14,7 +14,7 @@ const NavBar = () => {
         <NavLink to="/race" exact={true} activeClassName="active">
           Race
         </NavLink>
-        <NavLink to="/Profile" exact={true} activeClassName="active">
+        <NavLink to="/profile" exact={true} activeClassName="active">
           Profile
         </NavLink>
         <LogoutButton />
@@ -23,12 +23,16 @@ const NavBar = () => {
   } else {
     setLinks = (
       <div className={styles.navLinks}>
-        <NavLink to="/login" exact={true} activeClassName="active">
-          Login
-        </NavLink>
-        <NavLink to="/sign-up" exact={true} activeClassName="active">
-          Sign Up
-        </NavLink>
+        <div>
+          <NavLink to="/login" exact={true} activeClassName="active">
+            Login
+          </NavLink>
+        </div>
+        <div>
+          <NavLink to="/sign-up" exact={true} activeClassName="active">
+            Sign Up
+          </NavLink>
+        </div>
       </div>
     );
   }
@@ -36,11 +40,19 @@ const NavBar = () => {
   return (
     <div className={styles.navBar}>
       <div className={styles.logo}>
+        <NavLink
+          className={styles.red}
+          to="/"
+          exact={true}
+          activeClassName="active"
+        >
+          Nitro
+        </NavLink>
         <NavLink to="/" exact={true} activeClassName="active">
-          Nitro Code
+          Code_
         </NavLink>
       </div>
-      {setLinks}
+      <div className={styles.navLinks}>{setLinks}</div>
     </div>
   );
 };

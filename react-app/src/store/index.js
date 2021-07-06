@@ -3,11 +3,13 @@ import thunk from "redux-thunk";
 import session from "./session";
 import code from "./code";
 import race from "./race";
+import stat from "./stat";
 
 const rootReducer = combineReducers({
   session,
   code,
   race,
+  stat,
 });
 
 let enhancer;
