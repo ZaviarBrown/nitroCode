@@ -5,7 +5,7 @@ import styles from "./Timer.module.css";
 const Timer = ({ time }) => {
   return (
     <div>
-      <div className={styles.timer}>{time}</div>
+      <div className={styles.timer}>Time: {time}</div>
     </div>
   );
 };

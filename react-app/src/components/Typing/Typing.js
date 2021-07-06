@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import "./Typing.css";
 import { getOneCode } from "../../store/code";
 import Timer from "../Timer/Timer";
+import { createNewRace } from "../../store/race";
+import { Redirect } from "react-router-dom";
 
 const Typing = () => {
   const dispatch = useDispatch();
@@ -12,10 +14,6 @@ const Typing = () => {
   const [timing, setTiming] = useState();
   const details = useSelector((state) => state.code);
   const prompt = details.lines?.split("");
-
-  // let prompt =
-  // "const aFunc = (aParam, aVar) => { for (let i = 0; i < aParam.length; i++) { aVar += aParam[i] } return aVar; }";
-  // prompt = prompt.split("");
 
   const timer = () => {
     let startTime = Date.now();
@@ -45,6 +43,7 @@ const Typing = () => {
   useEffect(() => {
     const num = Math.floor(Math.random() * 2) + 1;
     dispatch(getOneCode(num));
+		
   }, []);
 
   useEffect(() => {
@@ -59,10 +58,16 @@ const Typing = () => {
         spellCheck();
       }
     }
+    if (input?.length === prompt?.length + 1) {
+      let codeblockId = details.id;
+      let cpm = (details.charCount / time) * 60;
+      dispatch(createNewRace(codeblockId, 0, cpm, time));
+      return <Redirect to="/" />;
+    }
   }, [input]);
 
   useEffect(() => {
-    if (start === true) {
+    if (start) {
       setTiming(timer());
     }
     if (start === false) {
