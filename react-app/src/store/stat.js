@@ -36,6 +36,9 @@ export default function stat(state = initialState, action) {
   switch (action.type) {
     case GET_STAT: {
       let newState = { ...state };
+      for (let x in action.payload) {
+        newState[x] = action.payload[x];
+      }
       return newState;
     }
     case UPDATE_STAT: {
