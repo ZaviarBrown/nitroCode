@@ -57,7 +57,7 @@ const NavBar = () => {
           exact={true}
           activeClassName="active"
         >
-          __
+          _
         </NavLink>
       </div>
       <div className={styles.navLinks}>{setLinks}</div>

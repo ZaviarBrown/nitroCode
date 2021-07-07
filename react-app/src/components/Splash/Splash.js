@@ -15,7 +15,7 @@ const Splash = () => {
         <div className={styles.button}>
           <NavLink
             className={styles.auth}
-            to="/login"
+            to={"/login"}
             exact={true}
             activeClassName="active"
           >
