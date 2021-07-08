@@ -10,6 +10,7 @@ const Friends = () => {
   const [errors, setErrors] = useState([]);
   const [name, setName] = useState("");
   const [dataName, setDataName] = useState("");
+  const [id, setId] = useState(0);
   const [cpm, setCpm] = useState(0);
   const [races, setRaces] = useState(0);
   const [status, setStatus] = useState("");
@@ -26,38 +27,21 @@ const Friends = () => {
       setErrors([]);
       let stats = await fetch(`/api/stat/${data.id}`);
       stats = await stats.json();
-      console.log(stats);
       let friend = await fetch(`/api/friend/${data.id}`);
       friend = await friend.json();
       setStatus("");
       if (friend !== "false") {
         setStatus(friend.status);
       }
+      setId(data.id);
       setDataName(name);
       setCpm(stats.averageCpm);
       setRaces(stats.races);
       setUserData(true);
-      // query friends table
-      // if user.id === friendOne/Two && data.id === friendTwo/One
-      //
-      // else
-      // POST to friends table user.id, data.id, pending
     } else {
       setErrors("This username does not exist");
     }
   };
-
-  // Input username
-  // search for user in db
-  // if found, say "invite successful"
-  // if not, say "user not found"
-
-  // DB - write to db
-
-  // useEffect(() => {
-  //   fet;
-  //   dispatch(getOneStat());
-  // }, [input]);
 
   return (
     <div>
@@ -78,7 +62,13 @@ const Friends = () => {
         <div>{errors}</div>
       </form>
       {userData ? (
-        <UserData name={dataName} cpm={cpm} races={races} status={status} />
+        <UserData
+          name={dataName}
+          cpm={cpm}
+          races={races}
+          status={status}
+          id={id}
+        />
       ) : null}
     </div>
   );

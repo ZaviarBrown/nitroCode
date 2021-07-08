@@ -4,12 +4,14 @@ import session from "./session";
 import code from "./code";
 import race from "./race";
 import stat from "./stat";
+import friend from "./friend";
 
 const rootReducer = combineReducers({
   session,
   code,
   race,
   stat,
+  friend,
 });
 
 let enhancer;

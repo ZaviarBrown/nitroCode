@@ -3,14 +3,14 @@ import styles from "./UserData.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { sendNewRequest } from "../../store/friend";
 
-const UserData = ({ name, cpm, races, status }) => {
+const UserData = ({ name, cpm, races, status, id }) => {
   const dispatch = useDispatch();
   const [currStatus, setCurrStatus] = useState(status);
   const user = useSelector((state) => state.session.user);
 
   const sendRequest = async (e) => {
     e.preventDefault();
-		dispatch(sendNewRequest())
+    dispatch(sendNewRequest(id));
     setCurrStatus("Pending");
   };
 

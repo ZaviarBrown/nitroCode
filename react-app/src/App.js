@@ -14,7 +14,6 @@ import Stats from "./components/Stats/Stats";
 import Friends from "./components/Friends/Friends";
 
 function App() {
-  // const [authenticated, setAuthenticated] = useState(false);
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
 
