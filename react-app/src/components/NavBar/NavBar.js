@@ -17,6 +17,9 @@ const NavBar = () => {
         <NavLink to="/profile" exact={true} activeClassName="active">
           Profile
         </NavLink>
+        <NavLink to="/friends" exact={true} activeClassName="active">
+          Friends
+        </NavLink>
         <LogoutButton />
       </div>
     );
