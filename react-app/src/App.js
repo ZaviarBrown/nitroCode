@@ -11,6 +11,7 @@ import { authenticate } from "./store/session";
 import Typing from "./components/Typing/Typing";
 import Splash from "./components/Splash/Splash";
 import Stats from "./components/Stats/Stats";
+import Friends from "./components/Friends/Friends";
 
 function App() {
   // const [authenticated, setAuthenticated] = useState(false);
@@ -46,6 +47,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/stats/:username" exact={true}>
           <Stats />
+        </ProtectedRoute>
+        <ProtectedRoute path="/friends" exact={true}>
+          <Friends />
         </ProtectedRoute>
         <ProtectedRoute path="/users" exact={true}>
           <NavBar />

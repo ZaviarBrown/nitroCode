@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, json, jsonify
 from flask_login import login_required
 from app.models import User
 
@@ -12,8 +12,11 @@ def users():
     return {"users": [user.to_dict() for user in users]}
 
 
-@user_routes.route('/:username')
+@user_routes.route('/<string:username>')
 @login_required
 def user(username):
-    user = User.query.get(username)
-    return user.to_dict()
+    user = User.query.filter(User.username == username).first()
+    if user:
+        return user.to_dict()
+    else:
+        return jsonify("false")
