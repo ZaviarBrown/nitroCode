@@ -1,5 +1,5 @@
 import React from "react";
-import "./Stats.module.css";
+import styles from "./Stats.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getOneStat } from "../../store/stat";
 

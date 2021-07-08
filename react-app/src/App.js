@@ -49,6 +49,7 @@ function App() {
           <Stats />
         </ProtectedRoute>
         <ProtectedRoute path="/friends" exact={true}>
+          <NavBar />
           <Friends />
         </ProtectedRoute>
         <ProtectedRoute path="/users" exact={true}>

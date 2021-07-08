@@ -11,6 +11,7 @@ from .api.auth_routes import auth_routes
 from .api.code_routes import code_routes
 from .api.race_routes import race_routes
 from .api.stat_routes import stat_routes
+from .api.friend_routes import friend_routes
 
 from .seeds import seed_commands
 
@@ -37,6 +38,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(code_routes, url_prefix='/api/code')
 app.register_blueprint(race_routes, url_prefix='/api/race')
 app.register_blueprint(stat_routes, url_prefix='/api/stat')
+app.register_blueprint(friend_routes, url_prefix='/api/friend')
 db.init_app(app)
 Migrate(app, db)
 

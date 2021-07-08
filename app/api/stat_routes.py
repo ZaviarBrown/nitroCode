@@ -8,8 +8,8 @@ stat_routes = Blueprint("stat", __name__)
 
 @stat_routes.route('/<int:id>')
 def stat(id):
-    stats = Stat.query.filter(Stat.userId == id)
-    return {"stat": [stat.to_dict() for stat in stats]}
+    stat = Stat.query.filter(Stat.userId == id).first()
+    return stat.to_dict()
 
 
 @stat_routes.route('/', methods=["PATCH"])

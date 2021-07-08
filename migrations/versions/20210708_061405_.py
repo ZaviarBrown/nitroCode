@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 8d761ad3e1a9
+Revision ID: 7f81b942a2fd
 Revises: 
-Create Date: 2021-07-07 09:48:34.034518
+Create Date: 2021-07-08 06:14:05.619651
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '8d761ad3e1a9'
+revision = '7f81b942a2fd'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -26,13 +26,18 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('lines')
     )
+    op.create_table('friends',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('friendOne', sa.Integer(), nullable=False),
+    sa.Column('friendTwo', sa.Integer(), nullable=False),
+    sa.Column('status', sa.String(length=20), nullable=False),
+    sa.PrimaryKeyConstraint('id')
+    )
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=50), nullable=False),
     sa.Column('email', sa.String(length=255), nullable=False),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
-    sa.Column('friends', sa.Text(), nullable=True),
-    sa.Column('pending', sa.Text(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
@@ -54,6 +59,7 @@ def upgrade():
     sa.Column('races', sa.Integer(), nullable=True),
     sa.Column('wins', sa.Integer(), nullable=True),
     sa.Column('highestCpm', sa.Integer(), nullable=True),
+    sa.Column('averageCpm', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('userId')
@@ -66,5 +72,6 @@ def downgrade():
     op.drop_table('stats')
     op.drop_table('races')
     op.drop_table('users')
+    op.drop_table('friends')
     op.drop_table('codeblocks')
     # ### end Alembic commands ###

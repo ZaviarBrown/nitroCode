@@ -10,6 +10,7 @@ class Stat(db.Model):
     races = db.Column(db.Integer)
     wins = db.Column(db.Integer)
     highestCpm = db.Column(db.Integer)
+    averageCpm = db.Column(db.Integer)
 
     def to_dict(self):
         return {
@@ -17,5 +18,6 @@ class Stat(db.Model):
             "userId": self.userId,
             "races": self.races,
             "wins": self.wins,
-            "highestCpm": self.highestCpm
+            "highestCpm": self.highestCpm,
+            "averageCpm": self.averageCpm
         }

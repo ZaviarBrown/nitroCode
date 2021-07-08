@@ -10,8 +10,6 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(50), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    friends = db.Column(db.Text)
-    pending = db.Column(db.Text)
 
     @property
     def password(self):
@@ -29,6 +27,4 @@ class User(db.Model, UserMixin):
             "id": self.id,
             "username": self.username,
             "email": self.email,
-            "friends": self.friends,
-            "pending": self.pending
         }

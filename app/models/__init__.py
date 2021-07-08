@@ -3,3 +3,4 @@ from .user import User
 from .codeblock import Codeblock
 from .race import Race
 from .stat import Stat
+from .friend import Friend

@@ -1,0 +1,10 @@
+.userData {
+  display: flex;
+  width: 80vw;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.sent {
+  color: rgba(255, 255, 255, 0.5);
+}
