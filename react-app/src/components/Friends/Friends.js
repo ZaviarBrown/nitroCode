@@ -7,6 +7,7 @@ import { getOneStat } from "../../store/stat";
 const Friends = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
+  const friend = useSelector((state) => state.friend);
   const [errors, setErrors] = useState([]);
   const [name, setName] = useState("");
   const [dataName, setDataName] = useState("");
@@ -14,6 +15,7 @@ const Friends = () => {
   const [cpm, setCpm] = useState(0);
   const [races, setRaces] = useState(0);
   const [status, setStatus] = useState("");
+  const [pending, setPending] = useState(false);
   const [userData, setUserData] = useState(false);
 
   const findFriend = async (e) => {
@@ -43,6 +45,12 @@ const Friends = () => {
     }
   };
 
+  useEffect(() => {
+    if (friend["0"]) {
+      setPending(true);
+    }
+  });
+
   return (
     <div>
       <form onSubmit={(e) => findFriend(e)}>
@@ -70,6 +78,7 @@ const Friends = () => {
           id={id}
         />
       ) : null}
+      {pending ? <div>Test</div> : null}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar/NavBar";
@@ -12,15 +12,17 @@ import Typing from "./components/Typing/Typing";
 import Splash from "./components/Splash/Splash";
 import Stats from "./components/Stats/Stats";
 import Friends from "./components/Friends/Friends";
+import { getAllRequests } from "./store/friend";
 
 function App() {
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
+  const requests = useSelector((state) => state);
 
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
-
+      await dispatch(getAllRequests());
       setLoaded(true);
     })();
   }, []);

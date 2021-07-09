@@ -1,20 +1,29 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from 'react-router-dom';
-import { signUp } from '../../store/session';
+import { Redirect } from "react-router-dom";
+import { signUp } from "../../store/session";
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.session.user)
+  const user = useSelector((state) => state.session.user);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [errors, setErrors] = useState([]);
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password));
+      await fetch("/api/stat/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    } else {
+      setErrors("Passwords do not match");
     }
   };
 
@@ -40,6 +49,7 @@ const SignUpForm = () => {
 
   return (
     <form onSubmit={onSignUp}>
+      <div>{errors}</div>
       <div>
         <label>User Name</label>
         <input

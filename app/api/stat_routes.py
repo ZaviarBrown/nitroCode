@@ -12,6 +12,21 @@ def stat(id):
     return stat.to_dict()
 
 
+@stat_routes.route('/', methods=["POST"])
+@login_required
+def create_stat():
+    stat = Stat(
+        userId=current_user.id,
+        races=0,
+        wins=0,
+        highestCpm=0,
+        averageCpm=0,
+    )
+    db.session.add(stat)
+    db.session.commit()
+    return {"placeholder": "placeholder"}
+
+
 @stat_routes.route('/', methods=["PATCH"])
 @login_required
 def update_stat():

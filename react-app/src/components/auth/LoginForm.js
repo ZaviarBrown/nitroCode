@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { getAllRequests } from "../../store/friend";
 import { login } from "../../store/session";
 import styles from "./LoginForm.module.css";
 
@@ -14,6 +15,7 @@ const LoginForm = () => {
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
+    dispatch(getAllRequests());
     if (data.errors) {
       setErrors(data.errors);
     }

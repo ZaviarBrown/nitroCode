@@ -6,6 +6,14 @@ from app.models import db, Friend
 friend_routes = Blueprint('friend', __name__)
 
 
+@friend_routes.route('/')
+@login_required
+def requests():
+    requests = Friend.query.filter((Friend.friendTwo == current_user.id) & (Friend.status == "Pending")).all()
+    print("********************", requests)
+    return {"friends": [request.pending() for request in requests]}
+
+
 @friend_routes.route('/', methods=["POST"])
 @login_required
 def new_request():

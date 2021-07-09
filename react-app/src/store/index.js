@@ -5,14 +5,23 @@ import code from "./code";
 import race from "./race";
 import stat from "./stat";
 import friend from "./friend";
+import { REMOVE_USER } from "./session";
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
   session,
   code,
   race,
   stat,
   friend,
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === REMOVE_USER) {
+    console.log("********************");
+    return appReducer(undefined, action);
+  }
+  return appReducer(state, action);
+};
 
 let enhancer;
 
