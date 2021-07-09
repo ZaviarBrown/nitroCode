@@ -7,6 +7,7 @@ const Stats = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const username = user.username;
+  const charts = "npm install --save react-chartjs-2 chart.js";
 
   // useEffect(() => {
   //   fet;

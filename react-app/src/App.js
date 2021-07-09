@@ -20,6 +20,7 @@ function App() {
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
+
       setLoaded(true);
     })();
   }, []);
@@ -45,6 +46,7 @@ function App() {
           <Typing />
         </ProtectedRoute>
         <ProtectedRoute path="/stats/:username" exact={true}>
+          <NavBar />
           <Stats />
         </ProtectedRoute>
         <ProtectedRoute path="/friends" exact={true}>

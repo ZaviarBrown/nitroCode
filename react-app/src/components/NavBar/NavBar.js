@@ -14,7 +14,11 @@ const NavBar = () => {
         <NavLink to="/race" exact={true} activeClassName="active">
           Race
         </NavLink>
-        <NavLink to="/profile" exact={true} activeClassName="active">
+        <NavLink
+          to={`/stats/${sessionUser.username}`}
+          exact={true}
+          activeClassName="active"
+        >
           Profile
         </NavLink>
         <NavLink to="/friends" exact={true} activeClassName="active">
