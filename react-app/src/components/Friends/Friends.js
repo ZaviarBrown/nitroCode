@@ -6,17 +6,17 @@ import { getOneStat } from "../../store/stat";
 
 const Friends = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.session.user);
-  const friend = useSelector((state) => state.friend);
-  const [errors, setErrors] = useState([]);
-  const [name, setName] = useState("");
-  const [dataName, setDataName] = useState("");
   const [id, setId] = useState(0);
   const [cpm, setCpm] = useState(0);
+  const [name, setName] = useState("");
   const [races, setRaces] = useState(0);
+  const [errors, setErrors] = useState([]);
   const [status, setStatus] = useState("");
+  const [dataName, setDataName] = useState("");
   const [pending, setPending] = useState(false);
   const [userData, setUserData] = useState(false);
+  const friend = useSelector((state) => state.friend);
+  const user = useSelector((state) => state.session.user);
 
   const findFriend = async (e) => {
     e.preventDefault();

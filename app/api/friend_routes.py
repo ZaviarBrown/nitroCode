@@ -10,8 +10,8 @@ friend_routes = Blueprint('friend', __name__)
 @login_required
 def requests():
     requests = Friend.query.filter((Friend.friendTwo == current_user.id) & (Friend.status == "Pending")).all()
-    print("********************", requests)
-    return {"friends": [request.pending() for request in requests]}
+    sents = Friend.query.filter((Friend.friendOne == current_user.id) & (Friend.status == "Pending")).all()
+    return {"request": [request.pending() for request in requests], "sent": [sent.sent() for sent in sents]}
 
 
 @friend_routes.route('/', methods=["POST"])

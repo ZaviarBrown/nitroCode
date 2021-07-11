@@ -12,26 +12,22 @@ const Splash = () => {
         <h1 className={styles.under}>_</h1>
       </div>
       <div className={styles.buttonContainer}>
-        <div className={styles.button}>
-          <NavLink
-            className={styles.auth}
-            to={"/login"}
-            exact={true}
-            activeClassName="active"
-          >
-            Login
-          </NavLink>
-        </div>
-        <div className={styles.button}>
-          <NavLink
-            className={styles.auth}
-            to="/sign-up"
-            exact={true}
-            activeClassName="active"
-          >
-            Sign Up
-          </NavLink>
-        </div>
+        <NavLink
+          className={styles.auth}
+          to={"/login"}
+          exact={true}
+          activeClassName="active"
+        >
+          <div className={styles.button}>Login</div>
+        </NavLink>
+        <NavLink
+          className={styles.auth}
+          to="/sign-up"
+          exact={true}
+          activeClassName="active"
+        >
+          <div className={styles.button}>Sign Up</div>
+        </NavLink>
       </div>
     </div>
   );

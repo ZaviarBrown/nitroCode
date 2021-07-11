@@ -18,6 +18,7 @@ class Friend(db.Model):
         }
 
     def pending(self):
-        return {
-            "id": self.friendOne
-        }
+        return self.friendOne
+
+    def sent(self):
+        return self.friendTwo
