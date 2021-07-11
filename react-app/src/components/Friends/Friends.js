@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import styles from "./Friends.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import UserData from "../UserData/UserData";
-import { getOneStat } from "../../store/stat";
+import PendingUserData from "../PendingUserData/PendingUserData";
+import styles from "./Friends.module.css";
 
 const Friends = () => {
   const dispatch = useDispatch();
@@ -15,6 +15,7 @@ const Friends = () => {
   const [dataName, setDataName] = useState("");
   const [pending, setPending] = useState(false);
   const [userData, setUserData] = useState(false);
+  // const [pendingFriends, setPendingFriends] = useState();
   const friend = useSelector((state) => state.friend);
   const user = useSelector((state) => state.session.user);
 
@@ -49,7 +50,7 @@ const Friends = () => {
     if (friend.received || friend.sent) {
       setPending(true);
     }
-  }, []);
+  }, [findFriend]);
 
   return (
     <div>
@@ -76,9 +77,19 @@ const Friends = () => {
           races={races}
           status={status}
           id={id}
+          bool={false}
         />
       ) : null}
-      {pending ? <div>Test</div> : null}
+      {pending
+        ? friend.received?.map((id) => (
+            <PendingUserData key={id} id={id} add={true} />
+          ))
+        : null}
+      {pending
+        ? friend.sent?.map((id) => (
+            <PendingUserData key={id} id={id} add={false} />
+          ))
+        : null}
     </div>
   );
 };

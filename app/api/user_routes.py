@@ -14,8 +14,18 @@ def users():
 
 @user_routes.route('/<string:username>')
 @login_required
-def user(username):
+def userName(username):
     user = User.query.filter(User.username == username).first()
+    if user:
+        return user.to_dict()
+    else:
+        return jsonify("false")
+
+
+@user_routes.route('/<int:id>')
+@login_required
+def userId(id):
+    user = User.query.filter(User.id == id).first()
     if user:
         return user.to_dict()
     else:

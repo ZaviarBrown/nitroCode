@@ -1,5 +1,6 @@
 const NEW_REQUEST = "friend/NEW_REQUEST";
 const GET_REQUESTS = "friend/GET_REQUESTS";
+const ACCEPT_REQUEST = "friend/ACCEPT_REQUEST";
 
 const newRequest = (request) => ({
   type: NEW_REQUEST,
@@ -9,6 +10,11 @@ const newRequest = (request) => ({
 const getRequests = (received, sent) => ({
   type: GET_REQUESTS,
   payload: { received, sent },
+});
+
+const acceptRequest = (payload) => ({
+  type: ACCEPT_REQUEST,
+  payload,
 });
 
 export const sendNewRequest = (id) => async (dispatch) => {
@@ -30,6 +36,19 @@ export const getAllRequests = () => async (dispatch) => {
   dispatch(getRequests(requests["received"], requests["sent"]));
 };
 
+export const acceptOneRequest = (id) => async (dispatch) => {
+  let body = JSON.stringify(id);
+  let data = await fetch("/api/friend/", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: body,
+  });
+  data = await data.json();
+  dispatch(acceptRequest(data));
+};
+
 let initialState = {};
 
 export default function friend(state = initialState, action) {
@@ -47,6 +66,10 @@ export default function friend(state = initialState, action) {
       for (let x in action.payload) {
         newState[x] = action.payload[x];
       }
+      return newState;
+    }
+    case ACCEPT_REQUEST: {
+      const newState = { ...state };
       return newState;
     }
     default:

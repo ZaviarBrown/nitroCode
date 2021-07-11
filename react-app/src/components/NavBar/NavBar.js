@@ -28,17 +28,17 @@ const NavBar = () => {
   if (sessionUser) {
     setLinks = (
       <div className={styles.navLinks}>
-        <NavLink to="/race" exact={true} activeClassName="active">
+        <NavLink to="/race" exact={true} activeClassName={styles.active}>
           Race
         </NavLink>
         <NavLink
           to={`/stats/${sessionUser.username}`}
           exact={true}
-          activeClassName="active"
+          activeClassName={styles.active}
         >
           Profile
         </NavLink>
-        <NavLink to="/friends" exact={true} activeClassName="active">
+        <NavLink to="/friends" exact={true} activeClassName={styles.active}>
           Friends
         </NavLink>
         <LogoutButton />
@@ -49,14 +49,14 @@ const NavBar = () => {
       <div className={styles.navLinks}>
         {path !== "/login" ? (
           <div>
-            <NavLink to="/login" exact={true} activeClassName="active">
+            <NavLink to="/login" exact={true} activeClassName={styles.active}>
               Login
             </NavLink>
           </div>
         ) : null}
         {path !== "/sign-up" ? (
           <div>
-            <NavLink to="/sign-up" exact={true} activeClassName="active">
+            <NavLink to="/sign-up" exact={true} activeClassName={styles.active}>
               Sign Up
             </NavLink>
           </div>
@@ -73,18 +73,23 @@ const NavBar = () => {
             className={styles.red}
             to="/"
             exact={true}
-            activeClassName="active"
+            activeClassName={styles.active}
           >
             Nitro
           </NavLink>
-          <NavLink to="/" exact={true} activeClassName="active">
+          <NavLink
+            className={styles.blue}
+            to="/"
+            exact={true}
+            activeClassName={styles.active}
+          >
             Code
           </NavLink>
           <NavLink
             className={styles.under}
             to="/"
             exact={true}
-            activeClassName="active"
+            activeClassName={styles.active}
           >
             _
           </NavLink>

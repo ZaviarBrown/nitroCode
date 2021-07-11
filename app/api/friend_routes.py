@@ -29,6 +29,16 @@ def new_request():
     return newRequest.to_dict()
 
 
+@friend_routes.route('/', methods=["PATCH"])
+@login_required
+def accept_request():
+    id = request.json
+    friend = Friend.query.filter((Friend.friendOne == id) & (Friend.friendTwo == current_user.id)).first()
+    friend.status = "Friends"
+    db.session.commit()
+    return {"id": id}
+
+
 @friend_routes.route('/<int:id>')
 @login_required
 def friend(id):

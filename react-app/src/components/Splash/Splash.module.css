@@ -7,16 +7,17 @@
   height: 50%;
 }
 
-.green {
+.red {
   font-size: 100px;
   font-style: italic;
   color: red;
 }
 
-.red {
+.blue {
   font-size: 100px;
   font-style: italic;
-  color: white;
+  /* color: white; */
+  color: #3391ff;
 }
 
 .under {

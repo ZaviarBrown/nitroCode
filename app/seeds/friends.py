@@ -6,7 +6,7 @@ def seed_friends():
     friendship1 = Friend(
         friendOne=1,
         friendTwo=2,
-        status="Already Friends")
+        status="Friends")
 
     db.session.add(friendship1)
 

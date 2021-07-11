@@ -6,6 +6,10 @@
   color: red;
 }
 
+.blue {
+  color: #3391ff;
+}
+
 .navLinks {
   display: flex;
   justify-content: space-between;
@@ -20,6 +24,10 @@
 .under {
   animation: blink 1s step-start 0s infinite;
   -webkit-animation: blink 1s step-start 0s infinite;
+}
+
+.active {
+  color: #3391ff;
 }
 
 @keyframes blink {

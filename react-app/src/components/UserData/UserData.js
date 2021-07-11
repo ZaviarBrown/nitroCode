@@ -10,7 +10,9 @@ const UserData = ({ name, cpm, races, status, id }) => {
 
   const sendRequest = async (e) => {
     e.preventDefault();
-    dispatch(sendNewRequest(id));
+    if (id !== 0) {
+      dispatch(sendNewRequest(id));
+    }
     setCurrStatus("Pending");
   };
 
