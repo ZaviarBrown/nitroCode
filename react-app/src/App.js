@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar/NavBar";
@@ -17,12 +17,10 @@ import { getAllRequests } from "./store/friend";
 function App() {
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
-  const requests = useSelector((state) => state);
 
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
-      await dispatch(getAllRequests());
       setLoaded(true);
     })();
   }, []);
@@ -33,6 +31,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <NavBar />
       <Switch>
         <Route path="/" exact={true}>
           <Splash />
@@ -44,23 +43,18 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path="/race" exact={true}>
-          <NavBar />
           <Typing />
         </ProtectedRoute>
         <ProtectedRoute path="/stats/:username" exact={true}>
-          <NavBar />
           <Stats />
         </ProtectedRoute>
         <ProtectedRoute path="/friends" exact={true}>
-          <NavBar />
           <Friends />
         </ProtectedRoute>
         <ProtectedRoute path="/users" exact={true}>
-          <NavBar />
           <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true}>
-          <NavBar />
           <User />
         </ProtectedRoute>
       </Switch>

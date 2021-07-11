@@ -17,7 +17,7 @@ class Friend(db.Model):
             "status": self.status
         }
 
-    def pending(self):
+    def received(self):
         return self.friendOne
 
     def sent(self):

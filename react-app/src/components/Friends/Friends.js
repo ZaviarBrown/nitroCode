@@ -46,10 +46,10 @@ const Friends = () => {
   };
 
   useEffect(() => {
-    if (friend["0"]) {
+    if (friend.received || friend.sent) {
       setPending(true);
     }
-  });
+  }, []);
 
   return (
     <div>

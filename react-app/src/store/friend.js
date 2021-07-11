@@ -6,9 +6,9 @@ const newRequest = (request) => ({
   payload: request,
 });
 
-const getRequests = (request, sent) => ({
+const getRequests = (received, sent) => ({
   type: GET_REQUESTS,
-  payload: { request, sent },
+  payload: { received, sent },
 });
 
 export const sendNewRequest = (id) => async (dispatch) => {
@@ -27,7 +27,7 @@ export const sendNewRequest = (id) => async (dispatch) => {
 export const getAllRequests = () => async (dispatch) => {
   const response = await fetch("/api/friend/");
   const requests = await response.json();
-  dispatch(getRequests(requests["request"], requests["sent"]));
+  dispatch(getRequests(requests["received"], requests["sent"]));
 };
 
 let initialState = {};
@@ -44,7 +44,6 @@ export default function friend(state = initialState, action) {
     case GET_REQUESTS: {
       const newState = { ...state };
       console.log(action.payload);
-      // newState["request"] = action.payload["request"];
       for (let x in action.payload) {
         newState[x] = action.payload[x];
       }
