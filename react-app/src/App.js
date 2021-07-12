@@ -12,7 +12,6 @@ import Typing from "./components/Typing/Typing";
 import Splash from "./components/Splash/Splash";
 import Stats from "./components/Stats/Stats";
 import Friends from "./components/Friends/Friends";
-import { getAllRequests } from "./store/friend";
 
 function App() {
   const dispatch = useDispatch();

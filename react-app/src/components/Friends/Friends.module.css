@@ -1,0 +1,30 @@
+.container {
+  display: grid; 
+  grid-template-columns: 0.4fr 1.2fr; 
+  grid-template-rows: 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "sideBar data"; 
+}
+
+.active {
+  color: #3391ff;
+}
+
+.search,
+.friends,
+.pending {
+  cursor: pointer;
+}
+
+.search:hover,
+.friends:hover,
+.pending:hover {
+  color: #3391ff;
+}
+
+.search:focus,
+.friends:focus,
+.pending:focus {
+  color: #3391ff;
+}
