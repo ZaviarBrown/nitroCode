@@ -61,11 +61,11 @@ const Typing = () => {
 
   useEffect(() => {
     if (newNum === undefined) {
-      num = Math.floor(Math.random() * 2) + 1;
+      num = Math.floor(Math.random() * 5) + 1;
       newNum = num;
     } else {
       while (num === newNum) {
-        num = Math.floor(Math.random() * 2) + 1;
+        num = Math.floor(Math.random() * 5) + 1;
       }
       newNum = num;
     }
