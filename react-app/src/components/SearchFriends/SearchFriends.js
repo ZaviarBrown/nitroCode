@@ -58,9 +58,9 @@ const SearchFriends = () => {
             ☌
           </button>
         </div>
-        <div>{errors}</div>
       </form>
       <div className={styles.userDiv}>
+        <div className={styles.errors}>{errors}</div>
         {userData ? (
           <UserData
             className={styles.userData}

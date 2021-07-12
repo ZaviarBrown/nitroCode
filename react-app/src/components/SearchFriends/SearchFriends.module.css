@@ -31,3 +31,8 @@
   flex-direction: column;
   height: 65vh;
 }
+
+.errors {
+  display: flex;
+  justify-content: center;
+}
