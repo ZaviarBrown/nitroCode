@@ -1,7 +1,3 @@
-.logo {
-  font-style: italic;
-}
-
 .red {
   color: red;
 }
@@ -10,13 +6,34 @@
   color: #3391ff;
 }
 
-.navLinks {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.active {
+  color: #3391ff;
 }
 
 .navBar {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-columns: 0.4fr 1.6fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas: "logo space navLinks";
+  padding-bottom: 0.5%;
+  align-items: center;
+  margin: 10px;
+}
+
+.logo {
+  grid-area: logo;
+  font-style: italic;
+}
+
+.space {
+  grid-area: space;
+}
+
+.navLinksHome,
+.navLinks {
+  grid-area: navLinks;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -26,11 +43,6 @@
   animation: blink 1s step-start 0s infinite;
   -webkit-animation: blink 1s step-start 0s infinite;
 }
-
-.active {
-  color: #3391ff;
-}
-
 @keyframes blink {
   50% {
     opacity: 0;

@@ -6,6 +6,13 @@ from flask_login import login_required, current_user
 race_routes = Blueprint("race", __name__)
 
 
+def manageRaces(races):
+    raceData = []
+    for race in races:
+        raceData.append({"cpm": race.cpm})
+    return raceData
+
+
 @race_routes.route('/', methods=["POST"])
 @login_required
 def new_race():
@@ -22,3 +29,11 @@ def new_race():
     raceId = newRace.id
     userId = newRace.userId
     return {"id": raceId, "userId": userId}
+
+
+@race_routes.route('/')
+@login_required
+def get_races():
+    races = Race.query.filter(Race.userId == current_user.id).all()
+    raceData = manageRaces(races)
+    return {"races": raceData}

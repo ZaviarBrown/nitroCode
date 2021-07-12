@@ -113,7 +113,7 @@ const Typing = () => {
   }, [start]);
 
   return (
-    <div>
+    <div className="container">
       <div>
         <Timer time={time} />
       </div>

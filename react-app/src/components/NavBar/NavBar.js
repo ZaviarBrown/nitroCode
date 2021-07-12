@@ -46,7 +46,7 @@ const NavBar = () => {
     );
   } else {
     setLinks = (
-      <div className={styles.navLinks}>
+      <div className={styles.navLinksHome}>
         {path !== "/login" ? (
           <div>
             <NavLink to="/login" exact={true} activeClassName={styles.active}>
@@ -94,9 +94,13 @@ const NavBar = () => {
             _
           </NavLink>
         </div>
-      ) : null}
-
-      <div className={styles.navLinks}>{setLinks}</div>
+      ) : (
+        <div className={styles.logo}></div>
+      )}
+      <div className={styles.space}></div>
+      <div className={styles.navLinksContainer}>
+        <div>{setLinks}</div>
+      </div>
     </div>
   );
 };

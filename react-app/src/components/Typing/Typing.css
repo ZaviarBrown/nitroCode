@@ -1,9 +1,9 @@
 .correct {
-  color: green;
+  color: rgb(0, 255, 0);
 }
 
 .incorrect {
-  color: red;
+  color: rgb(255, 0, 0);
 }
 
 .empty {
@@ -43,3 +43,5 @@
   justify-content: center;
   color: rgba(255, 255, 255, 0.5);
 }
+
+

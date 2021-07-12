@@ -1,0 +1,19 @@
+.hey {
+  display: flex;
+  justify-content: center;
+}
+
+.words {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stats {
+  padding: 1%;
+  border-bottom: 2px rgba(255, 255, 255, 0.5) solid;
+}
+
+.graph {
+  max-height: fit-content;
+}

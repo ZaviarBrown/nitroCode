@@ -19,6 +19,7 @@ const LoginForm = () => {
     if (data.errors) {
       setErrors(data.errors);
     }
+		
   };
 
   const updateEmail = (e) => {
@@ -40,37 +41,41 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error) => (
-          <div>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input
-          name="email"
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={updateEmail}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={updatePassword}
-        />
-        <div className={styles.buttons}>
-          <button type="submit">Login</button>
-          <button onClick={demoLogin}>Demo</button>
+    <div className={styles.container}>
+      <form onSubmit={onLogin}>
+        <div>
+          {errors.map((error) => (
+            <div>{error}</div>
+          ))}
         </div>
-      </div>
-    </form>
+        <div>
+          <label htmlFor="email">Email: </label>
+          <input
+            className={styles.input}
+            name="email"
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={updateEmail}
+          />
+        </div>
+        <div>
+          <label htmlFor="password">Password: </label>
+          <input
+            className={styles.input}
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={updatePassword}
+          />
+          <div className={styles.buttons}>
+            <button type="submit">Login</button>
+            <button onClick={demoLogin}>Demo</button>
+          </div>
+        </div>
+      </form>
+    </div>
   );
 };
 
