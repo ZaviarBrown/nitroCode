@@ -8,11 +8,16 @@ import { Redirect } from "react-router-dom";
 import { updateOneStat } from "../../store/stat";
 
 const Typing = () => {
+  let num;
+  let newNum;
   const dispatch = useDispatch();
+  const [renew, setRenew] = useState(false);
   const [input, setInput] = useState([]);
   const [start, setStart] = useState(false);
   const [time, setTime] = useState(0);
   const [timing, setTiming] = useState();
+  const [stats, setStats] = useState(false);
+  const [lastCpm, setLastCpm] = useState(0);
   const user = useSelector((state) => state.session.user);
   const details = useSelector((state) => state.code);
   const prompt = details.lines?.split("");
@@ -27,6 +32,13 @@ const Typing = () => {
 
   const stopTimer = () => {
     clearInterval(timing);
+  };
+
+  const clearCheck = () => {
+    for (let i = 0; i < prompt.length; i++) {
+      let val = document.getElementById(i);
+      val.className = "empty";
+    }
   };
 
   const spellCheck = () => {
@@ -48,9 +60,17 @@ const Typing = () => {
   };
 
   useEffect(() => {
-    const num = Math.floor(Math.random() * 2) + 1;
-    dispatch(getOneCode(num));
-  }, []);
+    if (newNum === undefined) {
+      num = Math.floor(Math.random() * 2) + 1;
+      newNum = num;
+    } else {
+      while (num === newNum) {
+        num = Math.floor(Math.random() * 2) + 1;
+      }
+      newNum = num;
+    }
+    dispatch(getOneCode(newNum));
+  }, [renew]);
 
   useEffect(() => {
     if (prompt !== undefined) {
@@ -59,6 +79,7 @@ const Typing = () => {
       }
       if (input.length > 0) {
         setStart(true);
+        setStats(false);
       }
       if (input.length <= prompt.length) {
         spellCheck();
@@ -66,9 +87,18 @@ const Typing = () => {
     }
     if (input?.length === prompt?.length + 1) {
       let codeblockId = details.id;
-      let cpm = (details.charCount / time) * 60;
+      let cpm = Math.floor((details.charCount / time) * 60);
       dispatch(createNewRace(codeblockId, 0, cpm, time));
       dispatch(updateOneStat(cpm));
+      let val = document.getElementById("text");
+      val.value = "";
+      setTime(0);
+      stopTimer();
+      setStats(true);
+      setLastCpm(cpm);
+      renew ? setRenew(false) : setRenew(true);
+      clearCheck();
+      setStart(false);
     }
   }, [input]);
 
@@ -87,22 +117,27 @@ const Typing = () => {
       <div>
         <Timer time={time} />
       </div>
-      <div id="prompt">
-        {prompt?.map((char, i) => {
-          return (
-            <span id={i} className="empty" key={i}>
-              {char}
-            </span>
-          );
-        })}
+      <div className="prompt" id="prompt">
+        <div className="span">
+          {prompt?.map((char, i) => {
+            return (
+              <span id={i} className="empty" key={i}>
+                {char}
+              </span>
+            );
+          })}
+        </div>
         <div className="textDiv">
           <textarea
             className="text"
+            id="text"
+            placeholder="_"
             autoFocus
             onChange={(e) => setInput(e.target.value.split(""))}
           ></textarea>
         </div>
       </div>
+      {stats ? <div className="stats">CPM: {lastCpm}</div> : null}
     </div>
   );
 };

@@ -11,6 +11,35 @@
 }
 
 .text {
-  background-color: black;
   width: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid rgba(50, 50, 50, 0);
+  resize: none;
+}
+
+.textDiv {
+  width: 100%;
+}
+
+.text:focus {
+  outline: none;
+}
+
+.prompt {
+  margin: auto;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.span {
+  padding-left: 3.5px;
+  padding-bottom: 3%;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.5);
 }
