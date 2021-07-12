@@ -14,7 +14,7 @@ const Friends = () => {
   useEffect(() => {
     dispatch(getAllRequests());
     dispatch(getAllFriends());
-    if (friend.friends) {
+    if (friend.friends?.length) {
       setFriends(true);
     }
   }, [page]);
@@ -33,24 +33,35 @@ const Friends = () => {
         </div>
       </div>
       <div className={styles.data}>
-        {page === "Search" ? <SearchFriends /> : null}
-        {page === "Friends" ? (
-          friends ? (
-            friend.friends?.map((id) => <OneFriend key={id} id={id} />)
-          ) : (
-            <div>You have no friends :/ </div>
-          )
-        ) : null}
-        {page === "Pending"
-          ? friend.received?.map((id) => (
-              <PendingUserData key={id} id={id} add={true} />
-            ))
-          : null}
-        {page === "Pending"
-          ? friend.sent?.map((id) => (
-              <PendingUserData key={id} id={id} add={false} />
-            ))
-          : null}
+        <div className={styles.upperData}></div>
+        <div className={styles.lowerData}>
+          <div>{page === "Search" ? <SearchFriends /> : null}</div>
+          <div>
+            {page === "Friends" ? (
+              friends ? (
+                friend.friends?.map((id) => <OneFriend key={id} id={id} />)
+              ) : (
+                <h1 className={styles.noFriends}>You have no friends :/ </h1>
+              )
+            ) : null}
+          </div>
+          {page === "Pending" && friend.received?.length ? (
+            <h1 className={styles.incoming}>Incoming</h1>
+          ) : null}
+          {page === "Pending"
+            ? friend.received?.map((id) => (
+                <PendingUserData key={id} id={id} add={true} />
+              ))
+            : null}
+          {page === "Pending" && friend.sent?.length ? (
+            <h1 className={styles.outgoing}>Outgoing</h1>
+          ) : null}
+          {page === "Pending"
+            ? friend.sent?.map((id) => (
+                <PendingUserData key={id} id={id} add={false} />
+              ))
+            : null}
+        </div>
       </div>
     </div>
   );

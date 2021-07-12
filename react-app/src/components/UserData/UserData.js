@@ -18,13 +18,15 @@ const UserData = ({ name, cpm, races, status, id }) => {
 
   return (
     <div className={styles.userData}>
-      <div>Username: {name}</div>
+      <div>{name}</div>
       <div>Average CPM: {cpm}</div>
-      <div>Races completed: {races}</div>
+      <div>Races Completed: {races}</div>
       {currStatus ? (
         <div className={styles.sent}>{currStatus}</div>
       ) : (
-        <button onClick={(e) => sendRequest(e)}>Add Friend</button>
+        <button className={styles.add} onClick={(e) => sendRequest(e)}>
+          <div>Add Friend</div>
+        </button>
       )}
     </div>
   );

@@ -39,11 +39,13 @@ const OneFriend = ({ id }) => {
 
   return (
     <div className={styles.userData}>
-      <div>Username: {name}</div>
+      <div className={styles.name}>{name}</div>
       <div>Average CPM: {cpm}</div>
-      <div>Races completed: {races}</div>
-      <div>Friends</div>
-      <button onClick={(e) => deleteFriend(e)}>Remove Friend</button>
+      <div>Races Completed: {races}</div>
+      <div className={styles.status}>Friends</div>
+      <button className={styles.delete} onClick={(e) => deleteFriend(e)}>
+        <div>Remove Friend</div>
+      </button>
     </div>
   );
 };

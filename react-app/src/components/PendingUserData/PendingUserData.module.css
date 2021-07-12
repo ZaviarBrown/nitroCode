@@ -4,9 +4,30 @@
   display: flex;
   width: 80vw;
   justify-content: space-between;
-  margin: 0 auto;
+}
+
+.userData {
+  border-bottom: solid 2px rgba(255, 255, 255, 0.5);
+  padding: 10px;
+  margin: 5% auto;
+  width: 80%;
+}
+
+.name {
+  border-right: 2px rgba(255, 255, 255, 0.25) solid;
+  width: 15%;
+  display: flex;
+  justify-content: center;
 }
 
 .sent {
   color: rgba(255, 255, 255, 0.5);
+}
+
+.add {
+  cursor: pointer;
+}
+
+.add :hover {
+  color: rgb(0, 255, 0);
 }

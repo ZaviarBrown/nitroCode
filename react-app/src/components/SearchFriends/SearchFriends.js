@@ -42,33 +42,37 @@ const SearchFriends = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={(e) => findFriend(e)}>
+    <div className={styles.container}>
+      <form className={styles.form} onSubmit={(e) => findFriend(e)}>
         <div>
-          <label htmlFor="friend">Search for a friend</label>
+          <label htmlFor="friend">Search for a friend: </label>
           <input
             name="friend"
             type="text"
             placeholder="Enter Username"
+            className={styles.input}
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-        </div>
-        <div>
-          <button type="submit">Search</button>
+          <button type="submit" className={styles.search}>
+            ☌
+          </button>
         </div>
         <div>{errors}</div>
       </form>
-      {userData ? (
-        <UserData
-          name={dataName}
-          cpm={cpm}
-          races={races}
-          status={status}
-          id={id}
-          bool={false}
-        />
-      ) : null}
+      <div className={styles.userDiv}>
+        {userData ? (
+          <UserData
+            className={styles.userData}
+            name={dataName}
+            cpm={cpm}
+            races={races}
+            status={status}
+            id={id}
+            bool={false}
+          />
+        ) : null}
+      </div>
     </div>
   );
 };

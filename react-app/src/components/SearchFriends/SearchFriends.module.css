@@ -1,0 +1,33 @@
+.search {
+  cursor: pointer;
+  transform: rotate(180deg);
+}
+
+.input {
+  background-color: rgba(0, 0, 0, 0);
+  border-bottom: 2px solid rgba(50, 50, 50);
+  padding-left: 10px;
+  border-right: 0px;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  padding-top: 0.5%;
+  padding-bottom: 2%;
+  border-bottom: 3px solid rgba(255, 0, 0, 0.5);
+  border-radius: 3px;
+  width: 75%;
+  margin: auto;
+}
+
+.userDiv {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 65vh;
+}

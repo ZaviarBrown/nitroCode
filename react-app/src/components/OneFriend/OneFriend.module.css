@@ -1,0 +1,27 @@
+.delete {
+  cursor: pointer;
+}
+
+.delete :hover {
+  color: rgb(255, 0, 0);
+}
+
+.userData {
+  border-bottom: solid 2px rgba(255, 255, 255, 0.5);
+  padding: 10px;
+  margin: 5% auto;
+  width: 95%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.name {
+  border-right: 2px rgba(255, 255, 255, 0.25) solid;
+  width: 15%;
+  display: flex;
+  justify-content: center;
+}
+
+.status {
+  color: rgba(255, 255, 255, 0.5);
+}

@@ -24,7 +24,7 @@ const getFriends = (payload) => ({
 });
 
 export const sendNewRequest = (id) => async (dispatch) => {
-  let body = JSON.stringify(id);
+  let body = JSON.stringify({ id });
   let data = await fetch("/api/friend/", {
     method: "POST",
     headers: {
@@ -67,9 +67,6 @@ export default function friend(state = initialState, action) {
   switch (action.type) {
     case NEW_REQUEST: {
       const newState = { ...state };
-      for (let x in action.payload) {
-        newState[x] = action.payload[x];
-      }
       return newState;
     }
     case GET_REQUESTS: {

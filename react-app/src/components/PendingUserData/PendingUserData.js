@@ -38,20 +38,22 @@ const PendingUserData = ({ id, add }) => {
     <div className={styles.userData}>
       {accept ? (
         <div className={styles.newPending}>
-          <div>Username: {name}</div>
+          <div className={styles.name}>{name}</div>
           <div>Average CPM: {cpm}</div>
-          <div>Races completed: {races}</div>
+          <div>Races Completed: {races}</div>
           {status ? (
             <div className={styles.sent}>{status}</div>
           ) : (
-            <button onClick={(e) => acceptRequest(e)}>Accept Request</button>
+            <button className={styles.add} onClick={(e) => acceptRequest(e)}>
+              <div>Accept Request</div>
+            </button>
           )}
         </div>
       ) : (
         <div className={styles.outgoingPending}>
-          <div>Username: {name}</div>
+          <div className={styles.name}>{name}</div>
           <div>Average CPM: {cpm}</div>
-          <div>Races completed: {races}</div>
+          <div>Races Completed: {races}</div>
           <div className={styles.sent}>Pending</div>
         </div>
       )}
