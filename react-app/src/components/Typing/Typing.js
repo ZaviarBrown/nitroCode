@@ -4,7 +4,6 @@ import "./Typing.css";
 import { getOneCode } from "../../store/code";
 import Timer from "../Timer/Timer";
 import { createNewRace } from "../../store/race";
-import { Redirect } from "react-router-dom";
 import { updateOneStat } from "../../store/stat";
 
 const Typing = () => {
@@ -18,7 +17,6 @@ const Typing = () => {
   const [timing, setTiming] = useState();
   const [stats, setStats] = useState(false);
   const [lastCpm, setLastCpm] = useState(0);
-  const user = useSelector((state) => state.session.user);
   const details = useSelector((state) => state.code);
   const prompt = details.lines?.split("");
 
@@ -60,6 +58,8 @@ const Typing = () => {
   };
 
   useEffect(() => {
+		// instead, lets store all code in store. 
+		// store id's in array, length of array will go where "5" is
     if (newNum === undefined) {
       num = Math.floor(Math.random() * 5) + 1;
       newNum = num;

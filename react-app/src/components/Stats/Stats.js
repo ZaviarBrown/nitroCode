@@ -18,13 +18,13 @@ const Stats = () => {
   const username = user.username;
   const [graphData, setGraphData] = useState([]);
 
-  const CustomTooltip = () => {
-    return (
-      <div>
-        <p>Cpm: </p>
-      </div>
-    );
-  };
+  // const CustomTooltip = () => {
+  //   return (
+  //     <div>
+  //       <p>Cpm: </p>
+  //     </div>
+  //   );
+  // };
 
   const draw = (
     <ResponsiveContainer width="100%" aspect={3}>
@@ -46,7 +46,7 @@ const Stats = () => {
           domain={["dataMin", "dataMax"]}
           tickCount={5}
         />
-        <Tooltip content={<CustomTooltip />} />
+        <Tooltip />
       </LineChart>
     </ResponsiveContainer>
   );
@@ -60,6 +60,7 @@ const Stats = () => {
 
   return (
     <div>
+      {console.log(graphData)}
       <div className={styles.hey}>Hey {username}, here's your latest data:</div>
       <div className={styles.words}>
         <div className={styles.stats}>Highest Ever CPM: {stats.highestCpm}</div>

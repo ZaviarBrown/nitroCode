@@ -17,7 +17,6 @@ const appReducer = combineReducers({
 
 const rootReducer = (state, action) => {
   if (action.type === REMOVE_USER) {
-    console.log("********************");
     return appReducer(undefined, action);
   }
   return appReducer(state, action);
