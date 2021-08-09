@@ -9,6 +9,7 @@ import { updateOneStat } from "../../store/stat";
 const Typing = () => {
   let num;
   let newNum;
+  const completed = new Set();
   const dispatch = useDispatch();
   const [renew, setRenew] = useState(false);
   const [input, setInput] = useState([]);
@@ -18,7 +19,14 @@ const Typing = () => {
   const [stats, setStats] = useState(false);
   const [lastCpm, setLastCpm] = useState(0);
   const details = useSelector((state) => state.code);
+  const prompts = useSelector((state) => state.code.prompts);
   const prompt = details.lines?.split("");
+
+  if (prompts) {
+    num = Math.floor(Math.random() * prompts.length);
+    completed.add(num);
+    console.log(completed);
+  }
 
   const timer = () => {
     return setTime((time) => time + 1);
@@ -60,18 +68,23 @@ const Typing = () => {
   useEffect(() => {
     // instead, lets store all code in store.
     // store id's in array, length of array will go where "5" is
-    if (newNum === undefined) {
-      num = Math.floor(Math.random() * 5) + 1;
-      newNum = num;
-    } else {
-      while (num === newNum) {
-        console.lop("*******", num);
-        num = Math.floor(Math.random() * 5) + 1;
-      }
-      newNum = num;
-    }
-    dispatch(getAllCode());
+    // if (newNum === undefined) {
+    //   num = Math.floor(Math.random() * 5) + 1;
+    //   newNum = num;
+    // } else {
+    //   while (num === newNum) {
+    //     console.lop("*******", num);
+    //     num = Math.floor(Math.random() * 5) + 1;
+    //   }
+    //   newNum = num;
+    // }
     dispatch(getOneCode(newNum));
+    dispatch(getAllCode());
+		num =	Math.floor(Math.random() * prompts.length);
+    if (completed.has(num)) {
+
+      num = Math.floor(Math.random() * prompts.length);
+    }
   }, [renew]);
 
   useEffect(() => {
