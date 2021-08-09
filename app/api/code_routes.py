@@ -10,7 +10,7 @@ def code(id):
     return code.to_dict()
 
 
-# @code_routes.route('/all')
-# def allCode():
-#     code = Codeblock.query.all()
-#     return code.to_dict()
+@code_routes.route('/all')
+def allCode():
+    codes = Codeblock.query.all()
+    return {'prompts': [code.to_dict() for code in codes]}

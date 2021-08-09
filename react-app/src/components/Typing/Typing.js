@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Typing.css";
-import { getOneCode } from "../../store/code";
+import { getOneCode, getAllCode } from "../../store/code";
 import Timer from "../Timer/Timer";
 import { createNewRace } from "../../store/race";
 import { updateOneStat } from "../../store/stat";
@@ -70,6 +70,7 @@ const Typing = () => {
       }
       newNum = num;
     }
+    dispatch(getAllCode());
     dispatch(getOneCode(newNum));
   }, [renew]);
 
