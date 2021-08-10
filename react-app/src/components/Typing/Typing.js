@@ -58,8 +58,6 @@ const Typing = () => {
   };
 
   useEffect(() => {
-    // instead, lets store all code in store.
-    // store id's in array, length of array will go where "5" is
     if (newNum === undefined) {
       num = Math.floor(Math.random() * 5) + 1;
       newNum = num;
