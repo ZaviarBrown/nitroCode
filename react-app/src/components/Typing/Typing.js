@@ -8,8 +8,8 @@ import { updateOneStat } from "../../store/stat";
 
 const Typing = () => {
   let num;
-  let newNum;
-  const completed = new Set();
+  let details;
+  let prompt;
   const dispatch = useDispatch();
   const [renew, setRenew] = useState(false);
   const [input, setInput] = useState([]);
@@ -18,14 +18,16 @@ const Typing = () => {
   const [timing, setTiming] = useState();
   const [stats, setStats] = useState(false);
   const [lastCpm, setLastCpm] = useState(0);
-  const details = useSelector((state) => state.code);
   const prompts = useSelector((state) => state.code.prompts);
-  const prompt = details.lines?.split("");
+  const completed = React.useMemo(() => new Set(), []);
 
-  if (prompts) {
-    num = Math.floor(Math.random() * prompts.length);
+  if (prompts && completed.size === 0) {
+    console.log("this is running");
+    num = Math.floor(Math.random() * prompts?.length);
+    details = prompts[num];
     completed.add(num);
     console.log(completed);
+    prompt = details.lines?.split("");
   }
 
   const timer = () => {
@@ -66,6 +68,10 @@ const Typing = () => {
   };
 
   useEffect(() => {
+    dispatch(getAllCode());
+  }, []);
+
+  useEffect(() => {
     // instead, lets store all code in store.
     // store id's in array, length of array will go where "5" is
     // if (newNum === undefined) {
@@ -78,12 +84,16 @@ const Typing = () => {
     //   }
     //   newNum = num;
     // }
-    dispatch(getOneCode(newNum));
-    dispatch(getAllCode());
-		num =	Math.floor(Math.random() * prompts.length);
-    if (completed.has(num)) {
-
-      num = Math.floor(Math.random() * prompts.length);
+    // dispatch(getOneCode(newNum));
+    num = Math.floor(Math.random() * prompts?.length);
+    while (completed.has(num)) {
+      num = Math.floor(Math.random() * prompts?.length);
+    }
+    if (prompts !== undefined) {
+      details = prompts[num];
+    }
+    if (num) {
+      completed.add(num);
     }
   }, [renew]);
 
