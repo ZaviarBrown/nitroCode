@@ -15,9 +15,8 @@ const Typing = () => {
   const [timing, setTiming] = useState();
   const [stats, setStats] = useState(false);
   const [lastCpm, setLastCpm] = useState(0);
-  const [num, setNum] = useState(null);
-  const [details, setDetails] = useState();
   const [prompt, setPrompt] = useState();
+  const [details, setDetails] = useState();
   const [complete, setComplete] = useState([]);
   // const completed = React.useMemo(() => new Set(), []);
   const promptArr = useSelector((state) => state.code.prompts);
@@ -65,10 +64,20 @@ const Typing = () => {
   }, []);
 
   useEffect(() => {
-    console.log("Firing");
+    if (complete?.length === promptArr?.length) {
+      setComplete([]);
+    }
+  }, [complete]);
+
+  useEffect(() => {
     if (promptArr) {
       let newNum = Math.floor(Math.random() * promptArr?.length);
+      while (complete.includes(newNum)) {
+        newNum = Math.floor(Math.random() * promptArr?.length);
+      }
       let newDetails = promptArr[newNum];
+      setComplete([...complete, newNum]);
+      setDetails(newDetails);
       setPrompt(newDetails.lines?.split(""));
     }
   }, [renew, promptArr]);
