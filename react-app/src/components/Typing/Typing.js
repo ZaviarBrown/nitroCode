@@ -15,23 +15,13 @@ const Typing = () => {
   const [timing, setTiming] = useState();
   const [stats, setStats] = useState(false);
   const [lastCpm, setLastCpm] = useState(0);
-  const [loaded, setLoaded] = useState(false);
   const [num, setNum] = useState(null);
   const [details, setDetails] = useState();
   const [prompt, setPrompt] = useState();
-  const prompts = useSelector((state) => state.code.prompts);
-  const completed = React.useMemo(() => new Set(), []);
-
-  if (prompts && completed.size === 0) {
-    console.log("this is running");
-    setNum(Math.floor(Math.random() * prompts?.length));
-    setDetails(prompts[num]);
-    completed.add(num);
-    console.log(completed);
-    setPrompt(details.lines?.split(""));
-    console.log(prompt);
-    setLoaded(!loaded);
-  }
+  const [complete, setComplete] = useState([]);
+  // const completed = React.useMemo(() => new Set(), []);
+  const promptArr = useSelector((state) => state.code.prompts);
+  console.log(promptArr);
 
   const timer = () => {
     return setTime((time) => time + 1);
@@ -72,46 +62,23 @@ const Typing = () => {
 
   useEffect(() => {
     dispatch(getAllCode());
-    console.log("75", prompts);
   }, []);
 
   useEffect(() => {
-    // instead, lets store all code in store.
-    // store id's in array, length of array will go where "5" is
-    // if (newNum === undefined) {
-    //   num = Math.floor(Math.random() * 5) + 1;
-    //   newNum = num;
-    // } else {
-    //   while (num === newNum) {
-    //     console.lop("*******", num);
-    //     num = Math.floor(Math.random() * 5) + 1;
-    //   }
-    //   newNum = num;
-    // }
-    // dispatch(getOneCode(newNum));
-    // console.log("92", prompts);
-    // num = Math.floor(Math.random() * prompts?.length);
-    // while (completed.has(num)) {
-    //   num = Math.floor(Math.random() * prompts?.length);
-    // }
-    // if (prompts !== undefined) {
-    //   details = prompts[num];
-    // }
-    // if (num) {
-    //   completed.add(num);
-    // }
-  }, [renew]);
+    console.log("Firing");
+    if (promptArr) {
+      let newNum = Math.floor(Math.random() * promptArr?.length);
+      let newDetails = promptArr[newNum];
+      setPrompt(newDetails.lines?.split(""));
+    }
+  }, [renew, promptArr]);
 
   useEffect(() => {
-    console.log("106", prompts);
-    console.log(num);
     if (prompt !== undefined) {
-      console.log("Should be running");
       if (input.length === 0) {
         setStart(false);
       }
       if (input.length > 0) {
-        console.log("THIS FIRES NOW");
         setStart(true);
         setStats(false);
       }
@@ -134,10 +101,9 @@ const Typing = () => {
       clearCheck();
       setStart(false);
     }
-  }, [input, loaded]);
+  }, [input]);
 
   useEffect(() => {
-    console.log("137", prompts);
     if (start) {
       startTimer();
     }
@@ -154,15 +120,14 @@ const Typing = () => {
       </div>
       <div className="prompt" id="prompt">
         <div className="span">
-          {loaded
-            ? prompt?.map((char, i) => {
-                return (
-                  <span id={i} className="empty" key={i}>
-                    {char}
-                  </span>
-                );
-              })
-            : null}
+          {prompt &&
+            prompt.map((char, i) => {
+              return (
+                <span id={i} className="empty" key={i}>
+                  {char}
+                </span>
+              );
+            })}
         </div>
         <div className="textDiv">
           <textarea
@@ -180,3 +145,28 @@ const Typing = () => {
 };
 
 export default Typing;
+
+// instead, lets store all code in store.
+// store id's in array, length of array will go where "5" is
+// if (newNum === undefined) {
+//   num = Math.floor(Math.random() * 5) + 1;
+//   newNum = num;
+// } else {
+//   while (num === newNum) {
+//     console.lop("*******", num);
+//     num = Math.floor(Math.random() * 5) + 1;
+//   }
+//   newNum = num;
+// }
+// dispatch(getOneCode(newNum));
+// console.log("92", promptArr);
+// num = Math.floor(Math.random() * promptArr?.length);
+// while (completed.has(num)) {
+//   num = Math.floor(Math.random() * promptArr?.length);
+// }
+// if (promptArr !== undefined) {
+//   details = promptArr[num];
+// }
+// if (num) {
+//   completed.add(num);
+// }
