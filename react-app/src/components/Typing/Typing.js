@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Typing.css";
-import { getOneCode, getAllCode } from "../../store/code";
+import { getAllCode } from "../../store/code";
 import Timer from "../Timer/Timer";
 import { createNewRace } from "../../store/race";
 import { updateOneStat } from "../../store/stat";
@@ -18,7 +18,6 @@ const Typing = () => {
   const [prompt, setPrompt] = useState();
   const [details, setDetails] = useState();
   const [complete, setComplete] = useState([]);
-  // const completed = React.useMemo(() => new Set(), []);
   const promptArr = useSelector((state) => state.code.prompts);
   console.log(promptArr);
 
@@ -123,7 +122,7 @@ const Typing = () => {
   }, [start]);
 
   return (
-    <div className="container">
+    <div className="container" onKeyDown={(e) => console.log(e.key)}>
       <div>
         <Timer time={time} />
       </div>
@@ -143,7 +142,6 @@ const Typing = () => {
             className="text"
             id="text"
             placeholder="_"
-            autoFocus
             onChange={(e) => setInput(e.target.value.split(""))}
           ></textarea>
         </div>
@@ -154,28 +152,3 @@ const Typing = () => {
 };
 
 export default Typing;
-
-// instead, lets store all code in store.
-// store id's in array, length of array will go where "5" is
-// if (newNum === undefined) {
-//   num = Math.floor(Math.random() * 5) + 1;
-//   newNum = num;
-// } else {
-//   while (num === newNum) {
-//     console.lop("*******", num);
-//     num = Math.floor(Math.random() * 5) + 1;
-//   }
-//   newNum = num;
-// }
-// dispatch(getOneCode(newNum));
-// console.log("92", promptArr);
-// num = Math.floor(Math.random() * promptArr?.length);
-// while (completed.has(num)) {
-//   num = Math.floor(Math.random() * promptArr?.length);
-// }
-// if (promptArr !== undefined) {
-//   details = promptArr[num];
-// }
-// if (num) {
-//   completed.add(num);
-// }
