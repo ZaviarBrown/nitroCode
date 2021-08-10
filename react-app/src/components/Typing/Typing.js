@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Typing.css";
 import { getOneCode, getAllCode } from "../../store/code";
@@ -7,9 +7,6 @@ import { createNewRace } from "../../store/race";
 import { updateOneStat } from "../../store/stat";
 
 const Typing = () => {
-  let num;
-  let details;
-  let prompt;
   const dispatch = useDispatch();
   const [renew, setRenew] = useState(false);
   const [input, setInput] = useState([]);
@@ -18,16 +15,22 @@ const Typing = () => {
   const [timing, setTiming] = useState();
   const [stats, setStats] = useState(false);
   const [lastCpm, setLastCpm] = useState(0);
+  const [loaded, setLoaded] = useState(false);
+  const [num, setNum] = useState(null);
+  const [details, setDetails] = useState();
+  const [prompt, setPrompt] = useState();
   const prompts = useSelector((state) => state.code.prompts);
   const completed = React.useMemo(() => new Set(), []);
 
   if (prompts && completed.size === 0) {
     console.log("this is running");
-    num = Math.floor(Math.random() * prompts?.length);
-    details = prompts[num];
+    setNum(Math.floor(Math.random() * prompts?.length));
+    setDetails(prompts[num]);
     completed.add(num);
     console.log(completed);
-    prompt = details.lines?.split("");
+    setPrompt(details.lines?.split(""));
+    console.log(prompt);
+    setLoaded(!loaded);
   }
 
   const timer = () => {
@@ -69,6 +72,7 @@ const Typing = () => {
 
   useEffect(() => {
     dispatch(getAllCode());
+    console.log("75", prompts);
   }, []);
 
   useEffect(() => {
@@ -85,24 +89,29 @@ const Typing = () => {
     //   newNum = num;
     // }
     // dispatch(getOneCode(newNum));
-    num = Math.floor(Math.random() * prompts?.length);
-    while (completed.has(num)) {
-      num = Math.floor(Math.random() * prompts?.length);
-    }
-    if (prompts !== undefined) {
-      details = prompts[num];
-    }
-    if (num) {
-      completed.add(num);
-    }
+    // console.log("92", prompts);
+    // num = Math.floor(Math.random() * prompts?.length);
+    // while (completed.has(num)) {
+    //   num = Math.floor(Math.random() * prompts?.length);
+    // }
+    // if (prompts !== undefined) {
+    //   details = prompts[num];
+    // }
+    // if (num) {
+    //   completed.add(num);
+    // }
   }, [renew]);
 
   useEffect(() => {
+    console.log("106", prompts);
+    console.log(num);
     if (prompt !== undefined) {
+      console.log("Should be running");
       if (input.length === 0) {
         setStart(false);
       }
       if (input.length > 0) {
+        console.log("THIS FIRES NOW");
         setStart(true);
         setStats(false);
       }
@@ -125,9 +134,10 @@ const Typing = () => {
       clearCheck();
       setStart(false);
     }
-  }, [input]);
+  }, [input, loaded]);
 
   useEffect(() => {
+    console.log("137", prompts);
     if (start) {
       startTimer();
     }
@@ -144,13 +154,15 @@ const Typing = () => {
       </div>
       <div className="prompt" id="prompt">
         <div className="span">
-          {prompt?.map((char, i) => {
-            return (
-              <span id={i} className="empty" key={i}>
-                {char}
-              </span>
-            );
-          })}
+          {loaded
+            ? prompt?.map((char, i) => {
+                return (
+                  <span id={i} className="empty" key={i}>
+                    {char}
+                  </span>
+                );
+              })
+            : null}
         </div>
         <div className="textDiv">
           <textarea
