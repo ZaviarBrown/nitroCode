@@ -28,8 +28,8 @@ const NavBar = () => {
   if (sessionUser) {
     setLinks = (
       <div className={styles.navLinks}>
-        <NavLink to="/race" exact={true} activeClassName={styles.active}>
-          Race
+        <NavLink to="/practice" exact={true} activeClassName={styles.active}>
+          Practice
         </NavLink>
         <NavLink
           to={`/stats/${sessionUser.username}`}
@@ -75,7 +75,7 @@ const NavBar = () => {
             exact={true}
             activeClassName={styles.active}
           >
-            Nitro
+            Dev
           </NavLink>
           <NavLink
             className={styles.blue}
@@ -83,7 +83,7 @@ const NavBar = () => {
             exact={true}
             activeClassName={styles.active}
           >
-            Code
+            Dash
           </NavLink>
           <NavLink
             className={styles.under}

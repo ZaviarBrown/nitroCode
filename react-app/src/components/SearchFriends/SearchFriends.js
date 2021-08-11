@@ -7,7 +7,7 @@ const SearchFriends = () => {
   const [id, setId] = useState(0);
   const [cpm, setCpm] = useState(0);
   const [name, setName] = useState("");
-  const [races, setRaces] = useState(0);
+  const [practices, setPractices] = useState(0);
   const [errors, setErrors] = useState([]);
   const [status, setStatus] = useState("");
   const [dataName, setDataName] = useState("");
@@ -34,7 +34,7 @@ const SearchFriends = () => {
       setId(data.id);
       setDataName(name);
       setCpm(stats.averageCpm);
-      setRaces(stats.races);
+      setPractices(stats.practices);
       setUserData(true);
     } else {
       setErrors("This username does not exist");
@@ -66,7 +66,7 @@ const SearchFriends = () => {
             className={styles.userData}
             name={dataName}
             cpm={cpm}
-            races={races}
+            practices={practices}
             status={status}
             id={id}
             bool={false}

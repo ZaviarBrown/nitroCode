@@ -7,7 +7,7 @@ class Stat(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     userId = db.Column(db.Integer, db.ForeignKey(
         "users.id"), nullable=False, unique=True)
-    races = db.Column(db.Integer)
+    practices = db.Column(db.Integer)
     wins = db.Column(db.Integer)
     highestCpm = db.Column(db.Integer)
     averageCpm = db.Column(db.Integer)
@@ -16,7 +16,7 @@ class Stat(db.Model):
         return {
             "id": self.id,
             "userId": self.userId,
-            "races": self.races,
+            "practices": self.practices,
             "wins": self.wins,
             "highestCpm": self.highestCpm,
             "averageCpm": self.averageCpm

@@ -1,14 +1,14 @@
-const NEW_RACE = "race/NEW_RACE";
+const NEW_RACE = "practice/NEW_RACE";
 
-const newRace = (race) => ({
+const newPractice = (practice) => ({
   type: NEW_RACE,
-  payload: race,
+  payload: practice,
 });
 
-export const createNewRace =
+export const createNewPractice =
   (codeblockId, placement, cpm, time) => async (dispatch) => {
     let body = JSON.stringify({ codeblockId, placement, cpm, time });
-    let data = await fetch("/api/race/", {
+    let data = await fetch("/api/practice/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -18,12 +18,12 @@ export const createNewRace =
     data = await data.json();
     let id = data["id"];
     let userId = data["userId"];
-    dispatch(newRace(id, userId, codeblockId, placement, cpm, time));
+    dispatch(newPractice(id, userId, codeblockId, placement, cpm, time));
   };
 
 let initialState = {};
 
-export default function race(state = initialState, action) {
+export default function practice(state = initialState, action) {
   switch (action.type) {
     case NEW_RACE: {
       const newState = { ...state };

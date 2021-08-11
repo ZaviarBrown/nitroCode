@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import session from "./session";
 import code from "./code";
-import race from "./race";
+import practice from "./practice";
 import stat from "./stat";
 import friend from "./friend";
 import { REMOVE_USER } from "./session";
@@ -10,7 +10,7 @@ import { REMOVE_USER } from "./session";
 const appReducer = combineReducers({
   session,
   code,
-  race,
+  practice,
   stat,
   friend,
 });

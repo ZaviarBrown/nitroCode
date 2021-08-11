@@ -19,7 +19,6 @@ const LoginForm = () => {
     if (data.errors) {
       setErrors(data.errors);
     }
-		
   };
 
   const updateEmail = (e) => {
@@ -31,7 +30,7 @@ const LoginForm = () => {
   };
 
   if (user) {
-    return <Redirect to="/race" />;
+    return <Redirect to="/practice" />;
   }
 
   const demoLogin = () => {

@@ -55,7 +55,7 @@ const SignUpForm = () => {
   };
 
   if (user) {
-    return <Redirect to="/race" />;
+    return <Redirect to="/practice" />;
   }
 
   return (

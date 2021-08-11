@@ -7,7 +7,7 @@ const OneFriend = ({ id }) => {
   const dispatch = useDispatch();
   const [cpm, setCpm] = useState(0);
   const [name, setName] = useState("");
-  const [races, setRaces] = useState(0);
+  const [practices, setPractices] = useState(0);
 
   const findFriend = async (id) => {
     let username = await fetch(`/api/users/${id}`);
@@ -16,7 +16,7 @@ const OneFriend = ({ id }) => {
     stats = await stats.json();
     setCpm(stats.averageCpm);
     setName(username.username);
-    setRaces(stats.races);
+    setPractices(stats.practices);
   };
 
   const deleteFriend = async (e) => {
@@ -41,7 +41,7 @@ const OneFriend = ({ id }) => {
     <div className={styles.userData}>
       <div className={styles.name}>{name}</div>
       <div>Average CPM: {cpm}</div>
-      <div>Races Completed: {races}</div>
+      <div>Lines Completed: {practices}</div>
       <div className={styles.status}>Friends</div>
       <button className={styles.delete} onClick={(e) => deleteFriend(e)}>
         <div>Remove Friend</div>

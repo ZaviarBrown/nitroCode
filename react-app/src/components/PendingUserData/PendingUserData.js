@@ -7,7 +7,7 @@ const PendingUserData = ({ id, add }) => {
   const dispatch = useDispatch();
   const [cpm, setCpm] = useState(0);
   const [name, setName] = useState("");
-  const [races, setRaces] = useState(0);
+  const [practices, setPractices] = useState(0);
   const [accept, setAccept] = useState(add);
   const [status, setStatus] = useState("");
   const user = useSelector((state) => state.session.user);
@@ -19,7 +19,7 @@ const PendingUserData = ({ id, add }) => {
     stats = await stats.json();
     setCpm(stats.averageCpm);
     setName(username.username);
-    setRaces(stats.races);
+    setPractices(stats.practices);
   };
 
   const acceptRequest = async (e) => {
@@ -40,7 +40,7 @@ const PendingUserData = ({ id, add }) => {
         <div className={styles.newPending}>
           <div className={styles.name}>{name}</div>
           <div>Average CPM: {cpm}</div>
-          <div>Races Completed: {races}</div>
+          <div>Practices Completed: {practices}</div>
           {status ? (
             <div className={styles.sent}>{status}</div>
           ) : (
@@ -53,7 +53,7 @@ const PendingUserData = ({ id, add }) => {
         <div className={styles.outgoingPending}>
           <div className={styles.name}>{name}</div>
           <div>Average CPM: {cpm}</div>
-          <div>Races Completed: {races}</div>
+          <div>Practices Completed: {practices}</div>
           <div className={styles.sent}>Pending</div>
         </div>
       )}

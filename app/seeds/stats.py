@@ -5,21 +5,21 @@ def seed_stats():
 
     stat1 = Stat(
         userId=1,
-        races=0,
+        practices=0,
         wins=0,
         highestCpm=0,
         averageCpm=0)
 
     stat2 = Stat(
         userId=2,
-        races=0,
+        practices=0,
         wins=0,
         highestCpm=0,
         averageCpm=0)
     
     stat3 = Stat(
         userId=3,
-        races=0,
+        practices=0,
         wins=0,
         highestCpm=0,
         averageCpm=0)

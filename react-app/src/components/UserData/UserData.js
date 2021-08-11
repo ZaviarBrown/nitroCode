@@ -3,7 +3,7 @@ import styles from "./UserData.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { sendNewRequest } from "../../store/friend";
 
-const UserData = ({ name, cpm, races, status, id }) => {
+const UserData = ({ name, cpm, practices, status, id }) => {
   const dispatch = useDispatch();
   const [currStatus, setCurrStatus] = useState(status);
   const user = useSelector((state) => state.session.user);
@@ -20,7 +20,7 @@ const UserData = ({ name, cpm, races, status, id }) => {
     <div className={styles.userData}>
       <div>{name}</div>
       <div>Average CPM: {cpm}</div>
-      <div>Races Completed: {races}</div>
+      <div>Lines Completed: {practices}</div>
       {currStatus ? (
         <div className={styles.sent}>{currStatus}</div>
       ) : (

@@ -14,11 +14,13 @@ const updateStat = (payload) => ({
 export const getOneStat = (id) => async (dispatch) => {
   const res = await fetch(`/api/stat/${id}`);
   const stat = await res.json();
+  console.log(stat);
   dispatch(getStat(stat));
 };
 
 export const updateOneStat = (cpm) => async (dispatch) => {
   let body = JSON.stringify(cpm);
+  console.log("This is running");
   let data = await fetch("/api/stat/", {
     method: "PATCH",
     headers: {
@@ -27,6 +29,7 @@ export const updateOneStat = (cpm) => async (dispatch) => {
     body: body,
   });
   data = await data.json();
+  console.log(data);
   dispatch(updateStat(data));
 };
 
@@ -42,7 +45,7 @@ export default function stat(state = initialState, action) {
       return newState;
     }
     case UPDATE_STAT: {
-      let newState = { ...state };
+      let newState = payload;
       return newState;
     }
     default:

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./Typing.css";
 import { getAllCode } from "../../store/code";
 import Timer from "../Timer/Timer";
-import { createNewRace } from "../../store/race";
+import { createNewPractice } from "../../store/practice";
 import { updateOneStat } from "../../store/stat";
 
 const Typing = () => {
@@ -19,7 +19,6 @@ const Typing = () => {
   const [details, setDetails] = useState();
   const [complete, setComplete] = useState([]);
   const promptArr = useSelector((state) => state.code.prompts);
-  console.log(promptArr);
 
   const timer = () => {
     return setTime((time) => time + 1);
@@ -97,7 +96,7 @@ const Typing = () => {
     if (input?.length === prompt?.length + 1) {
       let codeblockId = details.id;
       let cpm = Math.floor((details.charCount / time) * 60);
-      dispatch(createNewRace(codeblockId, 0, cpm, time));
+      dispatch(createNewPractice(codeblockId, 0, cpm, time));
       dispatch(updateOneStat(cpm));
       let val = document.getElementById("text");
       val.value = "";

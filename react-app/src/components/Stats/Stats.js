@@ -53,9 +53,9 @@ const Stats = () => {
 
   useEffect(() => {
     dispatch(getOneStat(user.id))
-      .then(() => fetch("/api/race/"))
+      .then(() => fetch("/api/practice/"))
       .then((res) => res.json())
-      .then((res) => setGraphData(res["races"]));
+      .then((res) => setGraphData(res["practices"]));
   }, []);
 
   return (
@@ -68,7 +68,7 @@ const Stats = () => {
           Current Average CPM: {stats.averageCpm}
         </div>
         <div className={styles.stats}>
-          Lines Of Code Completed: {stats.races}
+          Lines Of Code Completed: {stats.practices}
         </div>
       </div>
       <div className={styles.container}>

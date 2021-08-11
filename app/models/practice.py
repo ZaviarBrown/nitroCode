@@ -1,8 +1,8 @@
 from .db import db
 
 
-class Race(db.Model):
-    __tablename__ = 'races'
+class Practice(db.Model):
+    __tablename__ = 'practices'
 
     id = db.Column(db.Integer, primary_key=True)
     userId = db.Column(db.Integer, db.ForeignKey(
