@@ -96,8 +96,9 @@ const Typing = () => {
     if (input?.length === prompt?.length + 1) {
       let codeblockId = details.id;
       let cpm = Math.floor((details.charCount / time) * 60);
-      dispatch(createNewPractice(codeblockId, 0, cpm, time));
-      dispatch(updateOneStat(cpm));
+      dispatch(createNewPractice(codeblockId, 0, cpm, time)).then(() =>
+        dispatch(updateOneStat(cpm))
+      );
       let val = document.getElementById("text");
       val.value = "";
       setTime(0);

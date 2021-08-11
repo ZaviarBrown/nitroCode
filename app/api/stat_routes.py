@@ -8,6 +8,7 @@ stat_routes = Blueprint("stat", __name__)
 
 def findAvg(practices):
     cpms = []
+    print(practices)
     for cpm in practices:
         cpms.append(cpm.cpm)
     totalCpm = 0

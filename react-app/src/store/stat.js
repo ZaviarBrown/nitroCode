@@ -45,8 +45,7 @@ export default function stat(state = initialState, action) {
       return newState;
     }
     case UPDATE_STAT: {
-      let newState = payload;
-      return newState;
+      return state;
     }
     default:
       return state;
